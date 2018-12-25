@@ -3,10 +3,18 @@ var _sto = setInterval;
 window.onload=function(){
 	var canvas = document.getElementById("canvas");
 	var context = canvas.getContext('2d');
-	canvas.width=800;
+	canvas.width=1200;
 	canvas.height=800;
 
-	context.fillStyle = "black";
+	var linearGrad = context.createRadialGradient(
+								600,850,0,600,850,400);
+	linearGrad.addColorStop(0.0, "red");
+	linearGrad.addColorStop(0.2, "red");
+	linearGrad.addColorStop(0.35, "yellow");
+	linearGrad.addColorStop(0.7, "black");
+	linearGrad.addColorStop(1.0, "black");
+
+	context.fillStyle = linearGrad;
 	context.fillRect(0,0,canvas.width,canvas.height);
 
 	randomStar(context);
@@ -30,12 +38,19 @@ function stop(){
 
 function randomStar(cxt){
 	cxt.clearRect(0,0,800,800);
-	cxt.fillStyle = "black";
+	var linearGrad = cxt.createRadialGradient(600,850,0,600,850,400);
+	linearGrad.addColorStop(0.0, "red");
+	linearGrad.addColorStop(0.2, "red");
+	linearGrad.addColorStop(0.35, "yellow");
+	linearGrad.addColorStop(0.7, "black");
+	linearGrad.addColorStop(1.0, "black");
+
+	cxt.fillStyle = linearGrad;
 	cxt.fillRect(0,0,canvas.width,canvas.height);
 	for (var i=0; i< 50;i++){
 		var r=Math.random()*10;
 		var x = Math.random()*canvas.width;
-		var y = Math.random()*canvas.height;
+		var y = Math.random()*canvas.height*0.65;
 		var rot = Math.random()*360;
 		drawStar(cxt,r/2.0,r,x,y,rot);
 	}
